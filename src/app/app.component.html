@@ -1,20 +1,45 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<nz-tabset>
+    <nz-tab nzTitle="Product Entry">
+        <form nz-form (ngSubmit)="addProduct()">
+            <nz-form-item>
+                <nz-form-label [nzSpan]="5">Product Code</nz-form-label>
+                <nz-form-control nzValidateStatus="error" [nzSpan]="12">
+                    <input nz-input [(ngModel)]="pd_code" name="pd_code">
+                    <nz-form-explain *ngIf="!pd_code">Product code is required</nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSpan]="5">Product Name</nz-form-label>
+                <nz-form-control nzValidateStatus="error" [nzSpan]="12">
+                    <input nz-input [(ngModel)]="pd_name" name="pd_name">
+                    <nz-form-explain *ngIf="!pd_name">Product code is required</nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSpan]="5">Product Price</nz-form-label>
+                <nz-form-control nzValidateStatus="error" [nzSpan]="12">
+                    <input nz-input [(ngModel)]="pd_price" name="pd_price">
+                    <nz-form-explain *ngIf="!pd_price">Product price is required</nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSpan]="5">Product GST</nz-form-label>
+                <nz-form-control nzValidateStatus="error" [nzSpan]="12">
+                    <input nz-input [(ngModel)]="pd_gst" name="pd_gst">
+                    <nz-form-explain *ngIf="!pd_gst">Product gst is required</nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control [nzSpan]="12" [nzOffset]="5">
+                    <button nz-button nzType="primary"
+                        [disabled]="!pd_price || !pd_name || !pd_gst || !pd_code">
+                        Add Product
+                    </button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </nz-tab>
+    <nz-tab nzTitle="Product Listing">
+        Product Listing
+    </nz-tab>
+</nz-tabset>
