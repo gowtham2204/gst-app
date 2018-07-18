@@ -1,0 +1,20 @@
+.addtocart{
+    background: #ff1919;
+    width: 45%;
+    padding: 2%;
+    border-radius: 3px;
+    color: #ffff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.cart-icon {
+    font-size: 24px;
+    /* padding-left: 23px; */
+    line-height: 2;
+    cursor: pointer;
+}
+
+.ant-scroll-number {
+    margin-top: 14px!important;
+}

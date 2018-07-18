@@ -1,4 +1,4 @@
-<nz-tabset>
+<nz-tabset [nzTabBarExtraContent]="extraTemplate">
     <nz-tab nzTitle="Product Entry">
         <form nz-form (ngSubmit)="addProduct()">
             <nz-form-item>
@@ -40,6 +40,53 @@
         </form>
     </nz-tab>
     <nz-tab nzTitle="Product Listing">
-        Product Listing
+        <div style="background: #ECECEC;" >
+        <div  *ngFor="let data of productsData" style="background: #ECECEC;padding:30px; width: 25%; display: inline-block;">
+            <nz-card style="width:300px;" [nzBordered]="false" nzTitle="{{data.name}}" >
+              <p>Product Code: {{data.code}}</p>
+              <p>Product Price: {{data.price}}</p>
+              <p>Product GST: {{data.gst}} %</p>
+              <p (click) ="addtocart(data)" class="addtocart">Add to Cart <i class="anticon anticon-plus-circle-o"></i></p>
+            </nz-card>
+          </div>
+        </div>
     </nz-tab>
 </nz-tabset>
+<ng-template #extraTemplate>
+       
+    <nz-badge [nzCount]="cart.length">
+            <i (click) = 'opencart()' class="anticon anticon-shopping-cart cart-icon"></i>
+    </nz-badge>
+    <span style="margin-left: 14px;"></span>
+  </ng-template>
+
+  <nz-modal [nzFooter]="modalFooter" nzWidth="50%" [(nzVisible)]="isVisible" nzTitle="Cart" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <nz-table #basicTable [nzData]="cart">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>GST</th>
+            <th>Quantity</th>
+            <th>total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of cart;let i = index">
+            <td>{{data.name}}</td>
+            <td>{{data.price}}</td>
+            <td>{{data.gst}}</td>
+            <td><input min="1" (change) ='updatecart()' type="number" [(ngModel)]='data.quantity'>  </td>
+            <td>{{data.total}}</td>
+            <td>
+              <a (click)='removefromcart(data)'>Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+  </nz-modal>
+
+  <ng-template #modalFooter>
+    <span>Total: {{gettotal()}} </span>
+  </ng-template>
