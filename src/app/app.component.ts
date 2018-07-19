@@ -11,6 +11,7 @@ export class AppComponent {
   public pd_name: string;
   public pd_price: number;
   public pd_gst: number;
+  public error_msg: boolean;
   public editCache = {};
   dataSet = [];
   isVisible = false;
@@ -21,26 +22,31 @@ export class AppComponent {
   }
 
   addProduct() {
-    const product: any = {
-      code: this.pd_code,
-      name: this.pd_name,
-      price: this.pd_price,
-      gst: this.pd_gst
-    };
-    console.log('###', product);
-    let products: any[] = JSON.parse(window.localStorage.getItem('products'));
-    console.log('@@@@@@@@@@@', products);
-    if (!products) {
-      products = [];
+    if (!this.pd_code || !this.pd_gst || !this.pd_name || !this.pd_price) {
+      this.notification.create('error', 'Validation Failed',
+        'Please enter all the values');
+      this.error_msg = true;
+    } else {
+      this.error_msg = false;
+      const product: any = {
+        code: this.pd_code,
+        name: this.pd_name,
+        price: this.pd_price,
+        gst: this.pd_gst
+      };
+      let products: any[] = JSON.parse(window.localStorage.getItem('products'));
+      if (!products) {
+        products = [];
+      }
+      products.push(product);
+      window.localStorage.setItem('products', JSON.stringify(products));
+      this.notification.create('success', 'Product Added',
+        'Product added successfully');
+      this.pd_code = null;
+      this.pd_name = null;
+      this.pd_price = null;
+      this.pd_gst = null;
     }
-    products.push(product);
-    window.localStorage.setItem('products', JSON.stringify(products));
-    this.notification.create('success', 'Product Added',
-      'Product added successfully');
-    this.pd_code = null;
-    this.pd_name = null;
-    this.pd_price = null;
-    this.pd_gst = null;
   }
 
   startEdit(key: string): void {

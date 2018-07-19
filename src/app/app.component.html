@@ -5,34 +5,33 @@
                 <nz-form-label [nzSpan]="5">Product Code</nz-form-label>
                 <nz-form-control nzValidateStatus="error" [nzSpan]="12">
                     <input nz-input [(ngModel)]="pd_code" name="pd_code">
-                    <nz-form-explain *ngIf="!pd_code">Product code is required</nz-form-explain>
+                    <nz-form-explain *ngIf="error_msg && !pd_code">Product code is required</nz-form-explain>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSpan]="5">Product Name</nz-form-label>
                 <nz-form-control nzValidateStatus="error" [nzSpan]="12">
                     <input nz-input [(ngModel)]="pd_name" name="pd_name">
-                    <nz-form-explain *ngIf="!pd_name">Product code is required</nz-form-explain>
+                    <nz-form-explain *ngIf="error_msg && !pd_name">Product code is required</nz-form-explain>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSpan]="5">Product Price</nz-form-label>
                 <nz-form-control nzValidateStatus="error" [nzSpan]="12">
                     <input nz-input [(ngModel)]="pd_price" name="pd_price">
-                    <nz-form-explain *ngIf="!pd_price">Product price is required</nz-form-explain>
+                    <nz-form-explain *ngIf="error_msg && !pd_price">Product price is required</nz-form-explain>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSpan]="5">Product GST</nz-form-label>
                 <nz-form-control nzValidateStatus="error" [nzSpan]="12">
                     <input nz-input [(ngModel)]="pd_gst" name="pd_gst">
-                    <nz-form-explain *ngIf="!pd_gst">Product gst is required</nz-form-explain>
+                    <nz-form-explain *ngIf="error_msg && !pd_gst">Product gst is required</nz-form-explain>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control [nzSpan]="12" [nzOffset]="5">
-                    <button nz-button nzType="primary"
-                        [disabled]="!pd_price || !pd_name || !pd_gst || !pd_code">
+                    <button nz-button nzType="primary">
                         Add Product
                     </button>
                 </nz-form-control>
